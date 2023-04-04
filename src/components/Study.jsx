@@ -1,14 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState }  from 'react'
 import BookCard from './BookCard'
 // import data from '../data/books'
-import data from '../data/booksdata'
+// import data from '../data/booksdata'
+import axios from 'axios'
 
 const Study = () => {
+  const [bookList, setBookList]=useState();
+  const getBooks= async()=>{
+    const {data}=await axios.get("http://localhost:5000/api/v1/books")
+    // console.log(data.books);
+    setBookList(data.books);
+  }
+
+  useEffect(()=>async()=>{
+    getBooks();
+  }, [])
   return (
     <div className='bestseller dark-background content'>
         <div className='bestseller-2'>
-            {data.map((book, index)=>
-                book.type==="study" ? <BookCard key={index} coverimage={book.coverpage} bookname={book.bookname} author={book.author} edition={book.edition} booklink={book.link}  /> : null
+            {bookList && bookList.map((book, index)=>
+                book.category==="study" ? <BookCard key={index} coverimage={book.coverpage} bookname={book.name} author={book.author} edition={book.edition} booklink={book.link}  /> : null
             )}
         </div>
     </div>
