@@ -1,13 +1,11 @@
 import React, { useEffect, useState }  from 'react'
 import BookCard from './BookCard'
-// import data from '../data/books'
-// import data from '../data/booksdata'
 import axios from 'axios'
 
 const Comics = () => {
   const [bookList, setBookList]=useState();
   const getBooks= async()=>{
-    const {data}=await axios.get("http://localhost:5000/api/v1/books")
+    const {data}=await axios.get(`${process.env.REACT_APP_BACKEND_URL}`)
     // console.log(data.books);
     setBookList(data.books);
   }

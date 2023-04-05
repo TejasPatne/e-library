@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import BookCard from './BookCard'
-// import data from '../data/booksdata'
 import HomePoster from './HomePoster'
 import axios from 'axios'
 
 const PopularBooks = () => {
   const [bookList, setBookList]=useState();
   const getBooks= async()=>{
-    const {data}=await axios.get("http://localhost:5000/api/v1/books")
-    // console.log(data.books);
+    const {data}=await axios.get(`${process.env.REACT_APP_BACKEND_URL}`)
+
     setBookList(data.books);
   }
 
