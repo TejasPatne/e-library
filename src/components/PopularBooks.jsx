@@ -7,8 +7,10 @@ const PopularBooks = () => {
   const [bookList, setBookList]=useState();
   const getBooks= async()=>{
     const {data}=await axios.get(`${process.env.REACT_APP_BACKEND_URL}`)
-
+    console.log("data ",data);
+    console.log("backend url : ",`${process.env.REACT_APP_BACKEND_URL}`);
     setBookList(data.books);
+    
   }
 
   useEffect(()=>async()=>{
@@ -23,6 +25,8 @@ return (
         {bookList && bookList.map((book, index) =>
           <BookCard key={index} coverimage={book.coverpage} bookname={book.name} author={book.author} edition={book.edition} booklink={book.link} />
         )}
+        {"booklist : " + bookList}
+        {`${process.env.REACT_APP_BACKEND_URL}`}
       </div>
     </div>
   </div>
