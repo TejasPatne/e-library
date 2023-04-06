@@ -13,7 +13,7 @@ const BookCard = ({coverimage, bookname, author, edition, booklink}) => {
             <p>Edition: {bookEdition}</p>
             <p>Author: {bookAuthor}</p>
         </div>
-        <a href={`https://d3vowyc8qbkqzp.cloudfront.net/${booklink}`} target='_blank'><button>Download</button></a>
+        <a href={`https://d3vowyc8qbkqzp.cloudfront.net/${booklink}`}><button>Download</button></a>
     </div>
   )
 }

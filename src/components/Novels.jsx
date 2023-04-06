@@ -2,16 +2,25 @@ import React, { useEffect, useState }  from 'react'
 import BookCard from './BookCard'
 import axios from 'axios'
 
-const Novels = () => {const [bookList, setBookList]=useState();
+const Novels = () => {
+  const [bookList, setBookList]=useState([]);
   const getBooks= async()=>{
-    const {data}=await axios.get(`${process.env.REACT_APP_BACKEND_URL}`)
-    // console.log(data.books);
-    setBookList(data.books);
+    try {
+          // const {data}=await axios.get(`${process.env.REACT_APP_BACKEND_URL}`)
+    const res=await axios.get("https://justbooks-backend-production.up.railway.app/api/v1/books")
+    console.log("data ",res);
+    // console.log("backend url : ",`${process.env.REACT_APP_BACKEND_URL}`);
+    setBookList(res.data.books);
+    } catch (error) {
+      console.log(error);
+    }
+
+    
   }
 
-  useEffect(()=>async()=>{
-    getBooks();
-  }, [])
+  useEffect(()=>{
+    getBooks()
+  },[])
   return (
     <div className='bestseller dark-background content'>
         <div className='bestseller-2'>
